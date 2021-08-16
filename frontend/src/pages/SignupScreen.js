@@ -1,18 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import Filebase from 'react-file-base64'
+import { Form, Button, Row, Col, Image, Container } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import CircleLoader from '../components/CircleLoader'
 import toast from '../components/Toast'
 import Login from '../components/LoginForm'
 import { signupAction } from '../actions/actionUsers'
+import "./styles.css";
 
 const SignupScreen = ({ location, history }) => {
+
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [profileImage, setProfileImage] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [message, setMessage] = useState(null)
+
+  // const onChangePicture = e => {
+  //   console.log('picture: ', profileImage);
+  //   setProfileImage(URL.createObjectURL(e.target.files[0]));
+  // };
 
   const dispatch = useDispatch()
 
@@ -27,21 +36,28 @@ const SignupScreen = ({ location, history }) => {
     }
   }, [history, userInfo, redirect])
 
+
   const signupFunc = (e) => {
     e.preventDefault()
+    console.log(profileImage)
     if (password !== confirmPassword) {
       setMessage('Passwords do not match')
     } else {
-      dispatch(signupAction(name, email, password))
+      dispatch(signupAction(name, email, password,profileImage))
     }
   }
 
   return (
-    <Login>
-      <h1>Sign Up</h1>
+    <Container>
       {message && <toast variant='danger'>{message}</toast>}
       {error && <toast variant='danger'>{error}</toast>}
       {loading && <CircleLoader/>}
+     <Row className="justify-content-md-center">
+     <h1 className= "ml-20">Sign Up</h1>
+      <Image className= "avatar-big" src={profileImage} roundedCircle />   
+     </Row>
+     <Row>
+     <Login>
       <Form onSubmit={signupFunc}>
         <Form.Group controlId='name'>
           <Form.Label>Name</Form.Label>
@@ -82,8 +98,8 @@ const SignupScreen = ({ location, history }) => {
             onChange={(e) => setConfirmPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
-
-        <Button type='submit' variant='primary'>
+        <div><Filebase type="file" onDone= {({base64}) =>setProfileImage(base64)}/></div>
+          <Button type='submit' variant='primary'>
           Register
         </Button>
       </Form>
@@ -97,6 +113,9 @@ const SignupScreen = ({ location, history }) => {
         </Col>
       </Row>
     </Login>
+     </Row>
+    </Container>
+    
   )
 }
 

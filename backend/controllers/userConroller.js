@@ -15,7 +15,8 @@ if(userdata && (await userdata.checkPassword(password))){
         _id: userdata._id,
         name: userdata.name,
         email: userdata.email,
-        isAdmmin: userdata.isAdmmin,
+        isAdmmin: userdata.isAdmmin,                               //CHANGE
+        // profileImage: user.profileImage,
         auhtToken: createToken(userdata._id)
     })
 }
@@ -27,9 +28,9 @@ if(userdata && (await userdata.checkPassword(password))){
 
 })
 
-// get Request after authentication for user (private) /api/user/profile 
+// get USER PROFILE Request after authentication for user (private) /api/user/profile 
 //User Profile
-const userProfile = async (req, res) =>{
+const userProfile = asyncHandler(async (req, res) =>{
 
 const user = await User.findById(req.user._id)           //TRY CATCH LAGANA HY
 if(user){
@@ -38,6 +39,7 @@ res.json({
         name: user.name,
         email: user.email,
         isAdmin: user.isAdmin,
+        profileImage: user.profileImage                                 //CHANGE
 })
 }
 else{
@@ -45,14 +47,15 @@ else{
     throw new Error('Invalid data from DB')
 }
 
-   }
+   })
 
-   // POST Request for user SIGNUP (PUBLIC) /api/userS
+
+// POST Request for user SIGNUP (PUBLIC) /api/userS
 const userSignUp = asyncHandler(async (req, res) =>{
 
-const {name, email, password} = req.body
+    const {name, email, password, profileImage} = req.body                        //Change
 
- const checkUser = await User.findOne({email});
+    const checkUser = await User.findOne({email});
 
  if(checkUser){
 
@@ -63,7 +66,8 @@ const {name, email, password} = req.body
      const user = await User.create({
          name,
          email,
-         password
+         password,
+         profileImage
      })
  if (user) {
      res.status(201).json({
@@ -71,6 +75,7 @@ const {name, email, password} = req.body
         name: user.name,
         email: user.email,
         isAdmin: user.isAdmin,
+        profileImage: user.profileImage,                               //Change
         auhtToken: createToken(user._id),
       })
  }
@@ -97,6 +102,7 @@ const userProfileUpdate = asyncHandler(async (req, res) =>{
             _id: newProfile._id,
             name: newProfile.name,
             email: newProfile.email,
+            profileImage: newProfile.profileImage,                       //change
             isAdmin: newProfile.isAdmin,
     })
 

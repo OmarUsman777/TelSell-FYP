@@ -5,7 +5,7 @@ import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
 import { logoutAction } from '../actions/actionUsers'
 
 
-const Header = () => {
+const Header = ({history}) => {
 
   const dispatch = useDispatch()
 

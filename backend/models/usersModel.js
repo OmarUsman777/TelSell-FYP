@@ -1,6 +1,5 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
-
 const userSchema = mongoose.Schema(
   {
     name: {
@@ -20,6 +19,9 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       required: true,
       default: false,
+    },
+   profileImage: {
+     type: String,
     },
   },
   {
