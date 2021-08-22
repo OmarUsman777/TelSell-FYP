@@ -1,11 +1,11 @@
 const products = [
   {
   
-    name: 'Airpods Wireless Bluetooth Headphones',
-    image: '/images/airpods.jpg',
+    name: ' Samsung S20 5G Unlocked Android Smartphone U.S. 120Hz Fluid Display, Quad Camera ',
+    image: '/images/samsung1.png',
     description:
       'Bluetooth technology lets you connect it with compatible devices wirelessly High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working',
-    brand: 'Apple',
+    brand: 'Samsung',
     category: 'Electronics',
     price: 89.99,
     countInStock: 10,
@@ -13,23 +13,23 @@ const products = [
     numReviews: 12,
   },
   {
-    name: 'iPhone 11 Pro 256GB Memory',
-    image: '/images/phone.jpg',
+    name: 'iPhone 12 Pro 256GB Memory - Apple Phones',
+    image: '/images/iphone.jpg',
     description:
-      'Introducing the iPhone 11 Pro. A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life',
+      'Introducing the iPhone 12 Pro. A transformative Triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life',
     brand: 'Apple',
     category: 'Electronics',
-    price: 599.99,
+    price: 899.99,
     countInStock: 8,
     rating: 4.0,
     numReviews: 8,
   },
   {
-    name: 'Cannon EOS 80D DSLR Camera',
-    image: '/images/camera.jpg',
+    name: 'Samsung S21 Ultra 5G CPH2025 Global ROM EU/UK 12GB + 512GB - Multi Color',
+    image: '/images/samsung2.png',
     description:
-      'Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
-    brand: 'Cannon',
+      'Characterized by versatile imaging specs, the S21 ULTRA EOS  further clarifies itself using a pair of robust focusing systems and an intuitive design',
+    brand: 'Samsung',
     category: 'Electronics',
     price: 929.99,
     countInStock: 5,
@@ -37,11 +37,11 @@ const products = [
     numReviews: 12,
   },
   {
-    name: 'Sony Playstation 4 Pro White Version',
-    image: '/images/playstation.jpg',
+    name: 'Samsung-Note 255-RAM-500 Storage Ultimate Phone',
+    image: '/images/samsungnote.jpeg',
     description:
-      'The ultimate home entertainment center starts with PlayStation. Whether you are into gaming, HD movies, television, music',
-    brand: 'Sony',
+      'The ultimate home entertainment center starts with Samsung Note. Whether you are into gaming, HD movies, television, music',
+    brand: 'Samsung',
     category: 'Electronics',
     price: 399.99,
     countInStock: 11,
@@ -49,11 +49,11 @@ const products = [
     numReviews: 12,
   },
   {
-    name: 'Logitech G-Series Gaming Mouse',
-    image: '/images/mouse.jpg',
+    name: 'Apple 11-inch iPad Pro - Space Gray',
+    image: '/images/ipad.png',
     description:
-      'Get a better handle on your games with this Logitech LIGHTSYNC gaming mouse. The six programmable buttons allow customization for a smooth playing experience',
-    brand: 'Logitech',
+      'Get a better handle on your daily life with this Logitech LIGHTSYNC gaming Ipad. A New Experience to new future work',
+    brand: 'Apple',
     category: 'Electronics',
     price: 49.99,
     countInStock: 7,
@@ -61,11 +61,11 @@ const products = [
     numReviews: 10,
   },
   {
-    name: 'Amazon Echo Dot 3rd Generation',
-    image: '/images/alexa.jpg',
+    name: 'Airpods Apple - New Item High quality pods ',
+    image: '/images/airpods.jpg',
     description:
-      'Meet Echo Dot - Our most popular smart speaker with a fabric design. It is our most compact smart speaker that fits perfectly into small space',
-    brand: 'Amazon',
+      'Meet Apple Airpods - Our most popular smart earphone with a classic design. It is our most compact smart pods that fits perfectly to your ear',
+    brand: 'Apple',
     category: 'Electronics',
     price: 29.99,
     countInStock: 0,

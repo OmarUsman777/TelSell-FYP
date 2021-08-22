@@ -20,7 +20,7 @@ export const userLoginReducer = (state = { }, action)=> {
 }
 
 
-export const userSignupReducer = (state = { }, action)=> {
+export const userSignupReducer = (state ={ }, action)=> {
         
    switch (action.type) {
        case USER_SIGNUP_REQUEST:

@@ -9,6 +9,14 @@ import CartScreen from './pages/CartScreen'
 import LoginScreen from './pages/LoginScreen'
 import SignUp from './pages/SignupScreen'
 import ProfileCard from './pages/ProfileScreen'
+import Shipping from './pages/ShippingScreen'
+import Payment from './pages/PaymentsScreen'
+import Order from './pages/OrderScreen'
+import Checkout from './pages/CheckoutScreen'
+
+
+
+
 
 
 
@@ -24,7 +32,15 @@ const App = ()=> {
     <Route path = '/cart/:id?' component = {CartScreen} />    
     <Route path = '/login' component = {LoginScreen} />    
     <Route path = '/register' component = {SignUp}/> 
-    <Route path = '/profile' component = {ProfileCard}/>    
+    <Route path = '/profile' component = {ProfileCard}/>  
+    <Route path = '/shipping' component = {Shipping}/>  
+    <Route path = '/payment' component = {Payment}/>
+    <Route path = '/placeorder' component = {Order}/>    
+    <Route path = '/orders/:id' component = {Checkout}/>    
+
+    
+  
+  
    
 
 

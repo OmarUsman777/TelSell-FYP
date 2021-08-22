@@ -85,7 +85,7 @@ const userSignUp = asyncHandler(async (req, res) =>{
     
        })
 
-          // POST Request for user Profile and Update (private) /api/users/profile
+          // POST Request for user Profile  Update (private) /api/users/profile
 const userProfileUpdate = asyncHandler(async (req, res) =>{
 
     const user = await User.findById(req.user._id)        

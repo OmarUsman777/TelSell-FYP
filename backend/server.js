@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import connectDB from './config/database.js';
 import productRouter from './routers/productRouter.js'
 import userRouter from './routers/userRouter.js'
+import orderRouter from './routers/orderRouter.js'
+
 
 import {notFound, errorHandler } from './middlewareError/customError.js'
 
@@ -11,13 +13,11 @@ connectDB();
 const app = express();
 
 app.use(express.json())
-
-app.get('/', (req, res)=> {
-    res.send("Api is Running")
-});
  
 app.use('/api/products', productRouter);
 app.use('/api/users', userRouter);
+app.use('/api/orders', orderRouter);
+
 app.use(notFound)
 app.use(errorHandler)
  
