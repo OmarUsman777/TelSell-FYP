@@ -3,11 +3,15 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Row, Col, ListGroup, Image, Card, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
+import { Elements } from "@stripe/react-stripe-js"
+import { loadStripe } from "@stripe/stripe-js"
 import Toast from '../components/Toast'
 import CircleLoader from '../components/CircleLoader'
+import PaymentForm from '../components/StripePayment'
 import {
   getOrderAction
 } from '../actions/actionOrder'
+import './StripeStyle.css'
 
 
 
@@ -29,18 +33,23 @@ const Checkout = ({ match, history }) => {
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
+  const [stripeVal , setStripeVal] = useState(false)
+  const [isPaid, setIsPaid] =useState(false)
+  const [p, setP] =useState(false)
+
 
   if (!loading) {
     //   Calculate prices
     const addDecimals = (num) => {
       return (Math.round(num * 100) / 100).toFixed(2)
     }
-
     order.itemsPrice = addDecimals(
       order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0)
     )
   }
 useEffect(()=>{
+  const PaymentStatus = localStorage.getItem('PaymentStatus');
+  setP(PaymentStatus === 'true')
     dispatch(getOrderAction(orderId))
 }, [])
   const successPaymentHandler = (paymentResult) => {
@@ -49,11 +58,25 @@ useEffect(()=>{
   }
 
 
-
+const PUBLIC_KEY = "pk_test_51JRBhZGy1yuCYfBdN1oEjZNixnOjJku3oeq7tDHsVpMELeuyuFoq3f3VcniiyfhJJeM6T7oInQRsviwEfQYL7c6S00ijgNAhxR"
+const stripeTestPromise = loadStripe(PUBLIC_KEY)
+const donePaymentFunc = ()=>{
+ 
+<div className="StripeStyle" >
+		<Elements stripe={stripeTestPromise}>
+			< PaymentForm/>
+		</Elements>
+	  </div>
+    {setIsPaid(true)}
+}
   return loading ? (
     <CircleLoader />
-  ) : error ? (
-    <Toast variant='danger'>{error}</Toast>
+  ) : stripeVal ? (
+    <div className="App" >
+    <Elements stripe={stripeTestPromise}>
+    < PaymentForm/>
+  </Elements>
+  </div>
   ) : (
     <>
       <h1>Order {order._id}</h1>
@@ -75,9 +98,9 @@ useEffect(()=>{
                 {order.shippingAddress.phone},{' '}
                 {order.shippingAddress.country}
               </p>
-              {order.isDelivered ? (
+              {order.isPaid ? (
                 <Toast variant='success'>
-                  Delivered on {order.deliveredAt}
+                  Your Package Will be Dilivered in 3 days {order.deliveredAt}
                 </Toast>
               ) : (
                 <Toast variant='danger'>Not Delivered</Toast>
@@ -160,12 +183,21 @@ useEffect(()=>{
                   <Col>${order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              
+              <ListGroup.Item>
+              <Button
+                      type='button'
+                      className='btn btn-block'
+                      onClick={(e) => setStripeVal(true) }                 
+                   
+                    >
+                    Give Card Details
+                    </Button>
+              </ListGroup.Item>
             </ListGroup>
           </Card>
         </Col>
       </Row>
     </>
-  )
+  ) 
 }
 export default Checkout

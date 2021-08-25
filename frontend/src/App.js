@@ -20,6 +20,7 @@ import Checkout from './pages/CheckoutScreen'
 
 
 
+
 const App = ()=> {
   return (
     <Router>
@@ -36,7 +37,8 @@ const App = ()=> {
     <Route path = '/shipping' component = {Shipping}/>  
     <Route path = '/payment' component = {Payment}/>
     <Route path = '/placeorder' component = {Order}/>    
-    <Route path = '/orders/:id' component = {Checkout}/>    
+    <Route path = '/orders/:id' component = {Checkout}/> 
+   
 
     
   

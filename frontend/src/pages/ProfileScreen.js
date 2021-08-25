@@ -4,6 +4,7 @@ import FadeIn from 'react-fade-in/lib/FadeIn'
 import { Row, Col, Card, Tabs, Tab } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { UserProfileAction } from '../actions/actionUsers'
+import OrdersList from '../components/OrdersList'
 
 const ProfileCard = ({ location, history }) => {
   const [name, setName] = useState('')
@@ -81,9 +82,9 @@ const ProfileCard = ({ location, history }) => {
                    <h5 className = "mt-4">Items</h5> 
              {/* <Sonnet /> */}
                </Tab>
-             <Tab eventKey="contact" title="Contact" >
+             <Tab eventKey="contact" title="My Orders" >
              <h5 className = "mt-4">Details</h5> 
-
+                    <OrdersList/>
               </Tab>
               </Tabs>
             </Col>
