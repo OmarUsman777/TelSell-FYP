@@ -38,6 +38,7 @@ res.json({
         _id: user._id,
         name: user.name,
         email: user.email,
+        phone: user.phone,
         isAdmin: user.isAdmin,
         profileImage: user.profileImage                                 //CHANGE
 })
@@ -85,7 +86,7 @@ const userSignUp = asyncHandler(async (req, res) =>{
     
        })
 
-          // POST Request for user Profile  Update (private) /api/users/profile
+          // PUT Request for user Profile  Update (private) /api/users/profile
 const userProfileUpdate = asyncHandler(async (req, res) =>{
 
     const user = await User.findById(req.user._id)        
@@ -111,7 +112,92 @@ const userProfileUpdate = asyncHandler(async (req, res) =>{
         res.status(404)
         throw new Error('User Not Found from DB') }
         
-           })
+ })
+
+
+
+// get all users Request after authentication for Admin Only (private) /api/users
+//User Profile
+const getAllUsers = asyncHandler(async (req, res) =>{
+
+    const users = await User.find({})           
+    res.json(users)
+    
+       })
+
+
+// DELETE USER for Admin Only (private) /api/users/:id
+//User Profile
+const deleteUser = asyncHandler(async (req, res) =>{
+
+    const user = await User.findById(req.params.id)          
+    
+    if(user){
+        await user.remove()
+        res.status(200).json({message: `User ${user.name} Has Heen Deleted`})
+
+    }
+
+    else{
+        res.status(404)
+        throw new Error('No Such Record Found')
+    }
+       })
+
+
+// GET user by id to update in next function  Request after authentication for  
+// /api/users/:id
+//User Profile
+const getUserById = asyncHandler(async (req, res) =>{
+
+    const user = await User.findById(req.params.id).select('-password')           
+    
+    if(user){
+    res.json(user)
+    }
+    else{
+        res.status(404)
+        throw new Error('No Such Record Found')
+    } 
+       })
+
+
+//PUT REQUEST TO UPDATE THE USER FOR BOTH ADMIN AND USER ON UpdateUser
+//api/users/:id
+
+const updateUser = asyncHandler(async (req, res) => {
+
+        const user = await User.findById(req.params.id)        
+         if(user){
+              user.name = req.body.name || user.name
+              user.email = req.body.email || user.email
+              user.isAdmin = req.body.isAdmin || user.isAdmin
+              user.phone = req.body.phone
+              user.profileImage = req.body.profileImage || user.profileImage
+            
+              const newProfile = await user.save()
+            
+              res.json({
+                _id: newProfile._id,
+                name: newProfile.name,
+                email: newProfile.email,
+                phone: newProfile.phone,
+                profileImage: newProfile.profileImage,                                //change
+                isAdmin: newProfile.isAdmin,
+        })
+    
+         }
+         else{
+            res.status(404)
+            throw new Error('User Not Found from DB') }
+            
+     })
+    
     
 
-export { authUser, userProfile, userSignUp, userProfileUpdate }
+
+
+
+    
+
+export { authUser, userProfile, userSignUp, userProfileUpdate, getAllUsers , deleteUser,getUserById, updateUser}

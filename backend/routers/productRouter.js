@@ -1,8 +1,12 @@
 import  express  from "express";
 const Router = express.Router();
-import {getProducts, getSingleProduct } from '../controllers/productsController.js'
+import {getProducts, getSingleProduct, deleteProduct , createProduct, updateProduct, getUserProducts, createProductReview} from '../controllers/productsController.js'
+import { authMiddle, adminAuth } from '../middlewareError/authMiddle.js'
 
-Router.route('/').get(getProducts)
-Router.route('/:id').get(getSingleProduct)
+
+Router.route('/').get(getProducts).post(authMiddle, createProduct)
+Router.route('/product').get(authMiddle, getUserProducts)
+Router.route('/:id/reviews').post(authMiddle, createProductReview)
+Router.route('/:id').get(getSingleProduct).delete(authMiddle, adminAuth, deleteProduct ).put(authMiddle, updateProduct)
 
 export default Router

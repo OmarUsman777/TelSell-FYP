@@ -25,5 +25,14 @@ const authMiddle = async(req, res, next)=>{
     next();
 
 }
+const adminAuth = (req, res, next) => {
+    if(req.user && req.user.isAdmin) {
+        next()
+    }
+    else{
+        res.status(401)
+        throw new Error("Not AUTHORISED As ADMIN ")
+    }
+}
 
-export {authMiddle}
+export {authMiddle, adminAuth}

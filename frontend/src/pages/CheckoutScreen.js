@@ -53,7 +53,7 @@ useEffect(()=>{
     dispatch(getOrderAction(orderId))
 }, [])
   const successPaymentHandler = (paymentResult) => {
-    console.log("Hann Dbaya hai mujhy Checkout par")
+    console.log("Hann click kiya mujhy Checkout par")
   
   }
 
@@ -187,6 +187,7 @@ const donePaymentFunc = ()=>{
               <Button
                       type='button'
                       className='btn btn-block'
+                      disabled = {order.isPaid}
                       onClick={(e) => setStripeVal(true) }                 
                    
                     >

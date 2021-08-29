@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import CircleLoader from '../components/CircleLoader'
-import toast from '../components/Toast'
 import Login from '../components/LoginForm'
 import {addShippingAddress} from '../actions/actionCart'
 import PaymentSteps from '../components/Steps'
@@ -58,7 +56,7 @@ const ShippingScreen = ({history}) => {
               <Form.Label> Phone</Form.Label>
               <Form.Control
                 type='text'
-                placeholder='Enter postal code'
+                placeholder='Enter Phone '
                 value={phone}
                 required
                 onChange={(e) => setPhone(e.target.value)}

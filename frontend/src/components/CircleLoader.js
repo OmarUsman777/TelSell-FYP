@@ -3,7 +3,7 @@ import { Spinner } from 'react-bootstrap'
 
 const SpinLoader = () => {
   return (
-    /* <img src= "images/loading_Image.gif" alt="image" /> */
+    /* <img src= "/images/loading_Image.gif" alt="image" /> */
     <Spinner
       animation='border'
       role='status'

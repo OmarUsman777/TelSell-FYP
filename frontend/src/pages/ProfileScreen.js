@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import {Link} from 'react-router-dom'
 import FadeIn from 'react-fade-in/lib/FadeIn'
-import { Row, Col, Card, Tabs, Tab } from 'react-bootstrap'
+import { Row, Col, Card, Tabs, Tab , Button} from 'react-bootstrap'
+import {LinkContainer} from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { UserProfileAction } from '../actions/actionUsers'
 import OrdersList from '../components/OrdersList'
+import UsersList from '../components/UsersList'
+import MyShop from '../components/MyShop'
+import ProductList from '../components/ProductsList'
 
 const ProfileCard = ({ location, history }) => {
   const [name, setName] = useState('')
@@ -66,7 +70,7 @@ const ProfileCard = ({ location, history }) => {
             <strong>Cell:</strong>
           </Card.Title>
 
-        <Card.Text as='h6'>0332-5253409</Card.Text>
+        <Card.Text as='h6'>{user.phone}</Card.Text>
         <Card.Title as='div'>
             <strong>Email</strong>
           </Card.Title>
@@ -74,18 +78,37 @@ const ProfileCard = ({ location, history }) => {
         <Card.Text as='h6'>{user.email}</Card.Text>
       </Card.Body>
         </Card>
+         <LinkContainer to={`/user/${user._id}/edit`}>
+                    <Button variant='light' className='btn-sm'>
+                      Update Profile
+                    </Button>
+                  </LinkContainer>
             </Col>
 
             <Col md={8}>
             <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example" className="mb-3">
                <Tab eventKey="home" title="My Shop">
-                   <h5 className = "mt-4">Items</h5> 
-             {/* <Sonnet /> */}
+                     <MyShop/>
                </Tab>
-             <Tab eventKey="contact" title="My Orders" >
+               {user.isAdmin ? (
+               <Tab eventKey="contact" title="Users List" >
+                   <h5 className = "mt-4">Details</h5> 
+                    <UsersList/>
+              </Tab>
+              )
+              
+                 :(<Tab eventKey="contact" title="My Orders" >
              <h5 className = "mt-4">Details</h5> 
                     <OrdersList/>
               </Tab>
+              )}
+                    {user.isAdmin && (
+               <Tab eventKey="products" title="Products List" >
+                   <h5 className = "mt-4">Products List</h5> 
+                    <ProductList/>
+              </Tab>
+              )}
+            
               </Tabs>
             </Col>
         </Row>

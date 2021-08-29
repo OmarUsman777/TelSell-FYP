@@ -15,6 +15,9 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    phone: {
+      type: Number,
+    },
     isAdmin: {
       type: Boolean,
       required: true,

@@ -13,7 +13,8 @@ import Shipping from './pages/ShippingScreen'
 import Payment from './pages/PaymentsScreen'
 import Order from './pages/OrderScreen'
 import Checkout from './pages/CheckoutScreen'
-
+import UserUpdateScreen from './pages/UserUpdateScreen';
+import ProductCreate from './pages/ProductCreate';
 
 
 
@@ -29,7 +30,9 @@ const App = ()=> {
     <main className='py-3'>
     <Container>
     <Route path = '/' component= {HomeScreen} exact/>
-    <Route path = '/product/:id' component = {ProductScreen}/>    
+    <Route path = '/search/:keyword' component= {HomeScreen} />
+    <Route path = '/product/:id' component = {ProductScreen} exact/>    
+    <Route path = '/product/:id/edit' component = {ProductCreate} />    
     <Route path = '/cart/:id?' component = {CartScreen} />    
     <Route path = '/login' component = {LoginScreen} />    
     <Route path = '/register' component = {SignUp}/> 
@@ -38,6 +41,9 @@ const App = ()=> {
     <Route path = '/payment' component = {Payment}/>
     <Route path = '/placeorder' component = {Order}/>    
     <Route path = '/orders/:id' component = {Checkout}/> 
+    <Route path = '/user/:id/edit' component = {UserUpdateScreen}/> 
+
+
    
 
     
