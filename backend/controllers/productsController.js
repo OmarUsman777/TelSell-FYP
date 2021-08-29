@@ -19,6 +19,7 @@ const getProducts = asyncHandler( async (req, res) => {
 })
 
 //Get Single Product Details for cart
+// /api/products/:id
 const getSingleProduct = async (req, res) => {
     try {   
         const product = await Product.findById(req.params.id)
@@ -64,6 +65,8 @@ const createProduct = asyncHandler(async (req, res) => {
     name: 'Sample name',
     price: 0,
     user: req.user._id,
+    userName: req.user.name,
+    userPhone: req.user.phone,
     image: '/images/sample.jpg',
     brand: 'Sample brand',
     category: 'Sample category',
@@ -94,9 +97,8 @@ const createProduct = asyncHandler(async (req, res) => {
   })
   
 
-  // @desc    Update a product
-  // @route   PUT /api/products/:id
-  // @access  Private/Admin
+  //    Update a product For both Admin and User
+  //   PUT /api/products/:id
   const updateProduct = asyncHandler(async (req, res) => {
     const {
       name,
@@ -183,6 +185,18 @@ const createProductReview = asyncHandler(async (req, res) => {
 })
 
 
+//  Get Top products and set them to HomePage carousals
+//   POST /api/products/top
+const topProducts = asyncHandler(async (req, res) => {
+
+  const products = await Product.find({}).sort({ rating: -1 }).limit(3)
+  res.json(products)
+
+
+})
+
+
+
 
 
 export {
@@ -192,5 +206,6 @@ export {
     createProduct,
     updateProduct,
     getUserProducts,
-    createProductReview
+    createProductReview,
+    topProducts
 }

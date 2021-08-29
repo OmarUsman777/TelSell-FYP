@@ -15,6 +15,9 @@ import Order from './pages/OrderScreen'
 import Checkout from './pages/CheckoutScreen'
 import UserUpdateScreen from './pages/UserUpdateScreen';
 import ProductCreate from './pages/ProductCreate';
+import UsedProduct from './pages/UsedProduct';
+import NewProduct from './pages/NewProduct';
+
 
 
 
@@ -36,6 +39,8 @@ const App = ()=> {
     <Route path = '/cart/:id?' component = {CartScreen} />    
     <Route path = '/login' component = {LoginScreen} />    
     <Route path = '/register' component = {SignUp}/> 
+    <Route path = '/newproducts' component = {NewProduct}/>  
+    <Route path = '/usedproducts' component = {UsedProduct}/>  
     <Route path = '/profile' component = {ProfileCard}/>  
     <Route path = '/shipping' component = {Shipping}/>  
     <Route path = '/payment' component = {Payment}/>

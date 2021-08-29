@@ -4,12 +4,9 @@ import { Row, Col } from 'react-bootstrap'
 import Product from '../components/Product'
 import {listProducts} from '../actions/productActions'
 import SpinLoader from '../components/CircleLoader'
-import TopProduct from '../components/TopProducts'
-
 
 const HomeScreen = ({match}) => {
 
-    const keyword = match.params.keyword;
 
     const dispatch = useDispatch()
 
@@ -17,15 +14,14 @@ const HomeScreen = ({match}) => {
     const {loading, error,products} = productList
 
     useEffect( ()=> {
-    dispatch(listProducts(keyword))
-    }, [dispatch, keyword])
+    dispatch(listProducts())
+    }, [dispatch])
 
     return (
         <>
-        {!keyword  && <TopProduct/>}
-        <h1>Latest Products</h1>
+        <h1>New Products</h1>
         {loading ? (<SpinLoader/>) : error ? (<h2>error</h2>) : (<Row>
-        {products.map(product => (
+        {products.map(product => ( product.category === 'Electronics' &&
             <Col key = {product._id} sm = {12} md = {6} lg = {4} xl = {3}>
                <Product product ={product}/>
             </Col>

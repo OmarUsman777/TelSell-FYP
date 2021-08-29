@@ -46,6 +46,16 @@ const Header = () => {
             <Nav.Link ><i className= 'fas fa-user'></i>Sign In</Nav.Link>
         </LinkContainer> 
               )}
+        <NavDropdown title="set" id='category'>
+        <LinkContainer to='/usedproducts'>
+                    <NavDropdown.Item>Used Phones</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/newproducts'>
+                    <NavDropdown.Item>New Phones</NavDropdown.Item>
+                  </LinkContainer>
+        </NavDropdown>
+
+
         </Nav>
         </Navbar.Collapse>
         </Container>

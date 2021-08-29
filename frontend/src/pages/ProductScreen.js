@@ -158,7 +158,30 @@ return (
                   </ListGroup.Item>
                 </ListGroup>
               </Card>
-                          
+
+
+              <Card className = 'mt-5'>
+                <ListGroup variant='flush'>
+                  <ListGroup.Item>
+                    <Row>
+                      <Col>Seller Name:</Col>
+                      <Col>
+                        <strong>{product.userName}</strong>
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+
+                  <ListGroup.Item>
+                    <Row>
+                      <Col>Seller's Phone:</Col>
+                      <Col>
+                        {product.userPhone}
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+                </ListGroup>
+              </Card>
+                               
             </Col>
         </Row>
         <Row>

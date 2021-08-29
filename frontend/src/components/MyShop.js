@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react'
 import { useHistory, Link } from 'react-router-dom';
+import {LinkContainer} from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import {productCreateAction, listProducts, getProductsUserAction} from '../actions/productActions'
 
@@ -74,21 +75,17 @@ const MyShop = () => {
                   <Col md={2}>
                     <Image src={item.image} alt={item.name} fluid rounded />
                   </Col>
-                  <Col md={3}>
+                  <Col md={4}>
                     <Link to={`/product/${item._id}`}>{item.name}</Link>
                   </Col>
                   <Col md={2}>${item.price}</Col>
-                  <Col md={2}>
-                    
-                  </Col>
-                  <Col md={2}>
-                    <Button
-                      type='button'
-                      variant='light'
-                      onClick={()=> console.log('Hello g')}
-                    >
-                      <i className='fas fa-trash'></i>
-                    </Button>
+                  
+                  <Col md={1}>
+                  <LinkContainer to={`/product/${item._id}/edit`}>
+                      <Button variant='light' className='btn-sm'>
+                        <i className='fas fa-edit'></i>
+                      </Button>
+                    </LinkContainer>
                   </Col>
                 </Row>
               </ListGroup.Item>
